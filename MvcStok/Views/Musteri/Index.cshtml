@@ -1,0 +1,32 @@
+﻿@using MvcStok.Models.Entity
+@model List<TBLMUSTERILER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>MÜŞTERİ ID</th>
+        <th>MÜŞTERİ AD</th>
+        <th>MÜŞTERİ SOYAD</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+        <th>ALERT</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.MUSTERIID</td>
+            <td>@item.MUSTERIAD</td>
+            <td>@item.MUSTERISOYAD</td>
+            <td><a href="/Musteri/Sil/@item.MUSTERIID" class="btn btn-danger">SİL</a></td>
+            <td><a href="/Musteri/MusteriGetir/@item.MUSTERIID" class="btn btn-success">GÜNCELLE</a></td>
+            <td>@Html.ActionLink("SİL BUTONU", "Sil", new { id=item.MUSTERIID },
+               new { @class="btn btn-warning", onclick="return confirm('Gerçekten Silmek İstiyor Musunuz?')"})</td>
+        </tr>
+    }
+</table>
+<br />
+<a class="btn btn-primary" href="/Musteri/MusteriEkle">Yeni Müşteri Ekle</a>
+
